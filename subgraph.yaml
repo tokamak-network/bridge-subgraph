@@ -3,31 +3,52 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: L1StandardBridge
+    name: L1CrossDomainMessenger
     network: goerli
     source:
-      address: '0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD'
-      abi: L1StandardBridge
-      startBlock: 7756520
+      address: "0x2878373BA3Be0Ef2a93Ba5b3F7210D76cb222e63"
+      abi: L1CrossDomainMessenger
+      startBlock: 7756515
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - ERC20DepositInitiated
-        - ERC20WithdrawalFinalized
-        - ETHDepositInitiated
-        - ETHWithdrawalFinalized
+        - FailedRelayedFastMessage
+        - FailedRelayedMessage
+        - Initialized
+        - MessageAllowed
+        - MessageBlocked
+        - OwnershipTransferred
+        - Paused
+        - RelayedFastMessage
+        - RelayedMessage
+        - SentMessage
+        - Unpaused
       abis:
-        - name: L1StandardBridge
-          file: ./abis/L1StandardBridge.json
+        - name: L1CrossDomainMessenger
+          file: ./abis/L1CrossDomainMessenger.json
       eventHandlers:
-        - event: ERC20DepositInitiated(indexed address,indexed address,indexed address,address,uint256,bytes)
-          handler: handleERC20DepositInitiated
-        - event: ERC20WithdrawalFinalized(indexed address,indexed address,indexed address,address,uint256,bytes)
-          handler: handleERC20WithdrawalFinalized
-        - event: ETHDepositInitiated(indexed address,indexed address,uint256,bytes)
-          handler: handleETHDepositInitiated
-        - event: ETHWithdrawalFinalized(indexed address,indexed address,uint256,bytes)
-          handler: handleETHWithdrawalFinalized
-      file: ./src/mappings/l-1-standard-bridge.ts
+        - event: FailedRelayedFastMessage(indexed address,address,bytes,uint256)
+          handler: handleFailedRelayedFastMessage
+        - event: FailedRelayedMessage(indexed bytes32)
+          handler: handleFailedRelayedMessage
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: MessageAllowed(indexed bytes32)
+          handler: handleMessageAllowed
+        - event: MessageBlocked(indexed bytes32)
+          handler: handleMessageBlocked
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: RelayedFastMessage(indexed address,address,bytes,uint256)
+          handler: handleRelayedFastMessage
+        - event: RelayedMessage(indexed bytes32)
+          handler: handleRelayedMessage
+        - event: SentMessage(indexed address,address,bytes,uint256,uint256)
+          handler: handleSentMessage
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/mappings/L1CrossDomainMessenger.ts
