@@ -146,6 +146,7 @@ import {
     let entity = new RelayedMessage(
       event.transaction.hash.concatI32(event.logIndex.toI32())
     )
+
     entity.msgHash = event.params.msgHash
   
     entity.blockNumber = event.block.number

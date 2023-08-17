@@ -4,10 +4,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ lakmi94/standardBridge",
-    "create-local": "graph create --node http://localhost:8020/ lakmi94/standardBridge",
-    "remove-local": "graph remove --node http://localhost:8020/ lakmi94/standardBridge",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lakmi94/standardBridge",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ lakmi94/standardbridge",
+    "create-local": "graph create --node http://localhost:8020/ lakmi94/standardbridge",
+    "remove-local": "graph remove --node http://localhost:8020/ lakmi94/standardbridge",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lakmi94/standardbridge",
     "test": "graph test"
   },
   "dependencies": {
